@@ -1,0 +1,38 @@
+install.packages("readr")
+library(readr)
+install.packages("dplyr")
+library(dplyr)
+
+#Import Q1 & Q2 2020 Data
+data_2020_Q1 <- read_csv("2020/Divvy_Trips_2020_Q1.csv")
+data_2020_04 <- read_csv("2020/202004-divvy-tripdata.csv")
+data_2020_05 <- read_csv("2020/202005-divvy-tripdata.csv")
+data_2020_06 <- read_csv("2020/202006-divvy-tripdata.csv")
+#Merge Q1 & Q2 Data 
+Q1_Q2 <- do.call("rbind", list(data_2020_Q1, data_2020_04, data_2020_05, data_2020_06))
+rm(data_2020_Q1)
+rm(data_2020_04)
+rm(data_2020_05)
+rm(data_2020_06)
+
+#Import Q3 Data
+data_2020_07 <- read_csv("2020/202007-divvy-tripdata.csv")
+data_2020_08 <- read_csv("2020/202008-divvy-tripdata.csv")
+data_2020_09 <- read_csv("2020/202009-divvy-tripdata.csv")
+#Merge with Q1_Q2
+Q1_Q2_Q3 <- do.call("rbind", list(Q1_Q2, data_2020_07, data_2020_08, data_2020_09))
+rm(Q1_Q2)
+rm(data_2020_07)
+rm(data_2020_08)
+rm(data_2020_09)
+
+#Import Q4 Data
+data_2020_10 <- read_csv("2020/202010-divvy-tripdata.csv")
+data_2020_11 <- read_csv("2020/202011-divvy-tripdata.csv")
+data_2020_12 <- read_csv("2020/202012-divvy-tripdata.csv")
+#Complete 2020 Data Merge
+Data_2020 <- do.call("rbind", list(Q1_Q2_Q3, data_2020_10, data_2020_11, data_2020_12))
+rm(Q1_Q2_Q3)
+rm(data_2020_10)
+rm(data_2020_11)
+rm(data_2020_12)
